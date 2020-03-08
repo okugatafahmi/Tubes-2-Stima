@@ -1,4 +1,4 @@
-﻿namespace Tubes_Stima_BFS
+﻿namespace Tubes_2_Stima
 {
     partial class Form1
     {
