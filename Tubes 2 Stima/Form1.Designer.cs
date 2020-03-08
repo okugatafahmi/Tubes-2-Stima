@@ -30,6 +30,7 @@
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxInputFile = new System.Windows.Forms.GroupBox();
+            this.buttonExecution = new System.Windows.Forms.Button();
             this.buttonBrowseFilePopulation = new System.Windows.Forms.Button();
             this.buttonBrowseFileConnection = new System.Windows.Forms.Button();
             this.textBoxCityPopulationFile = new System.Windows.Forms.TextBox();
@@ -37,7 +38,7 @@
             this.textBoxCityConnectionFile = new System.Windows.Forms.TextBox();
             this.labelCityConnection = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
-            this.buttonExecution = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBoxInputFile.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +62,17 @@
             this.groupBoxInputFile.TabIndex = 0;
             this.groupBoxInputFile.TabStop = false;
             this.groupBoxInputFile.Text = "Input File";
+            // 
+            // buttonExecution
+            // 
+            this.buttonExecution.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.buttonExecution.Location = new System.Drawing.Point(10, 221);
+            this.buttonExecution.Name = "buttonExecution";
+            this.buttonExecution.Size = new System.Drawing.Size(68, 27);
+            this.buttonExecution.TabIndex = 7;
+            this.buttonExecution.Text = "Execute";
+            this.buttonExecution.UseVisualStyleBackColor = true;
+            this.buttonExecution.Click += new System.EventHandler(this.buttonExecution_Click);
             // 
             // buttonBrowseFilePopulation
             // 
@@ -86,9 +98,11 @@
             // 
             // textBoxCityPopulationFile
             // 
+            this.textBoxCityPopulationFile.BackColor = System.Drawing.SystemColors.Window;
             this.textBoxCityPopulationFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.textBoxCityPopulationFile.Location = new System.Drawing.Point(166, 145);
             this.textBoxCityPopulationFile.Name = "textBoxCityPopulationFile";
+            this.textBoxCityPopulationFile.ReadOnly = true;
             this.textBoxCityPopulationFile.Size = new System.Drawing.Size(188, 23);
             this.textBoxCityPopulationFile.TabIndex = 3;
             // 
@@ -104,9 +118,11 @@
             // 
             // textBoxCityConnectionFile
             // 
+            this.textBoxCityConnectionFile.BackColor = System.Drawing.SystemColors.Window;
             this.textBoxCityConnectionFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.textBoxCityConnectionFile.Location = new System.Drawing.Point(166, 56);
             this.textBoxCityConnectionFile.Name = "textBoxCityConnectionFile";
+            this.textBoxCityConnectionFile.ReadOnly = true;
             this.textBoxCityConnectionFile.Size = new System.Drawing.Size(188, 23);
             this.textBoxCityConnectionFile.TabIndex = 2;
             // 
@@ -130,21 +146,20 @@
             this.labelTitle.TabIndex = 1;
             this.labelTitle.Text = "Corona BFS";
             // 
-            // buttonExecution
+            // textBox1
             // 
-            this.buttonExecution.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.buttonExecution.Location = new System.Drawing.Point(10, 221);
-            this.buttonExecution.Name = "buttonExecution";
-            this.buttonExecution.Size = new System.Drawing.Size(68, 27);
-            this.buttonExecution.TabIndex = 7;
-            this.buttonExecution.Text = "Execute";
-            this.buttonExecution.UseVisualStyleBackColor = true;
+            this.textBox1.Location = new System.Drawing.Point(454, 69);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(325, 282);
+            this.textBox1.TabIndex = 2;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(851, 475);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.groupBoxInputFile);
             this.Name = "Form1";
@@ -168,6 +183,7 @@
         private System.Windows.Forms.TextBox textBoxCityPopulationFile;
         private System.Windows.Forms.Label labelCityPopulation;
         private System.Windows.Forms.Button buttonExecution;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

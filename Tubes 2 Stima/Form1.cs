@@ -36,5 +36,11 @@ namespace Tubes_2_Stima
                 textBoxCityPopulationFile.SelectionStart = textBoxCityConnectionFile.Text.Length;
             }
         }
+
+        private void buttonExecution_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = System.IO.File.ReadAllText(textBoxCityConnectionFile.Text);
+            textBox1.Text += System.IO.File.ReadAllText(textBoxCityPopulationFile.Text);
+        }
     }
 }
