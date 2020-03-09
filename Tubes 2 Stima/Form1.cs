@@ -39,8 +39,10 @@ namespace Tubes_2_Stima
 
         private void buttonExecution_Click(object sender, EventArgs e)
         {
-            textBox1.Text = System.IO.File.ReadAllText(textBoxCityConnectionFile.Text);
-            textBox1.Text += System.IO.File.ReadAllText(textBoxCityPopulationFile.Text);
+            if (textBoxCityConnectionFile.Text != "" && textBoxCityPopulationFile.Text != "")
+            {
+                Program.graph.ReadFromFile(textBoxCityConnectionFile.Text, textBoxCityPopulationFile.Text);
+            }
         }
     }
 }
