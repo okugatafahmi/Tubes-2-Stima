@@ -1,11 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Math;
 
 namespace Tubes_2_Stima
 {
+
+static class Constants
+{
+    public const double e = 2.71828;
+}
+
     class City
     {
         private string name;
@@ -65,6 +72,9 @@ namespace Tubes_2_Stima
         public double PopulationGetInfected(int time)
         {
             double res = 0;
+            double power = Math.Pow(Constants.e, (-0.25*time));
+            res = population/(1+((population-1)*power));
+
             return res;
         }
 
