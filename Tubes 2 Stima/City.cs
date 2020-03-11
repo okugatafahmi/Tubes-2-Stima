@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,7 +54,16 @@ namespace Tubes_2_Stima
         /// <returns></returns>
         public double VirusSpread(string cityTo, int time)
         {
-            double res = 0;
+            double Tr;
+            foreach(var element in Adj)
+            {
+                if(element.Item1 == cityTo)
+                {
+                    Tr = element.Item2;
+                }
+            }
+
+            double res = PopulationGetInfected(time)*Tr;
             return res;
         }
 
@@ -62,7 +74,17 @@ namespace Tubes_2_Stima
         /// <returns></returns>
         public double TimeCityToGetInfected(string cityTo)
         {
-            double time = 0;
+            double Tr;
+            foreach(var element in Adj)
+            {
+                if(element.Item1 == cityTo)
+                {
+                    Tr = element.Item2;
+                }
+            }
+
+            double count = 1/(PopulationGetInfected(1)*Tr);
+            double time = Math.Round(count, 0, MidpointRounding.AwayFromZero);
             return time;
         }
     }
