@@ -60,11 +60,52 @@ namespace Tubes_2_Stima
         }
 
         /// <summary>
-        /// Melakukan traversal graph dengan algoritma BFS yang sesuai dengan spek tubes
+        /// Melakukan traversal graph dengan algoritma BFS yang sesuai dengan spek tubes.
+        /// Mengembalikan list tuple kota asal dan tujuan yang terinfeksi
         /// </summary>
-        public void BFS()
+        /// <param name="timeTotal"></param>
+        /// <returns></returns>
+        public List<Tuple<string, string>> BFS(int timeTotal)
         {
+            Queue<Tuple<string, string>> nodeAlive = new Queue<Tuple<string, string>>();
+            Dictionary<string, int> timeCityGetInfected = new Dictionary<string, int>();
+            List<Tuple<string, string>> res = new List<Tuple<string, string>>();
+            // Inisiasi waktu kota terinfeksi dengan tak hingga
+            foreach (string cityName in cityDict.Keys)
+            {
+                timeCityGetInfected[cityName] = Int32.MaxValue;
+            }
+            timeCityGetInfected[startNode] = 0;
 
+            // Setiap kota yang bertetanggaan dengan kota pertama dimasukkan queue
+            foreach (Tuple<string, double> adj in cityDict[startNode].Adj)
+            {
+                nodeAlive.Enqueue(new Tuple<string, string>(startNode, adj.Item1));
+            }
+
+            // mentraversal node sampai kosong
+            while (nodeAlive.Count != 0)
+            {
+                string from = nodeAlive.Peek().Item1, to = nodeAlive.Peek().Item2;
+                int timeFrom = timeTotal - timeCityGetInfected[from];
+                City cityFrom = cityDict[from];
+                if (cityFrom.VirusSpread(to, timeFrom) > 1.0)
+                {
+                    res.Add(new Tuple<string, string>(from, to));
+                    int timeSpread = (int) Math.Floor(cityFrom.TimeCityToGetInfected(to));
+                    int timeCityToInfected = timeCityGetInfected[to];
+                    timeCityGetInfected[to] = timeFrom + timeSpread;
+                    if (timeFrom + timeSpread < timeCityToInfected)
+                    {
+                        foreach (Tuple<string, double> adj in cityDict[to].Adj)
+                        {
+                            nodeAlive.Enqueue(new Tuple<string, string>(startNode, adj.Item1));
+                        }
+                    }
+                }
+                nodeAlive.Dequeue();
+            }
+            return res;
         }
     }
 }

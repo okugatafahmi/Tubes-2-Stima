@@ -42,6 +42,7 @@ namespace Tubes_2_Stima
             if (textBoxCityConnectionFile.Text != "" && textBoxCityPopulationFile.Text != "")
             {
                 Program.graph.ReadFromFile(textBoxCityConnectionFile.Text, textBoxCityPopulationFile.Text);
+                this.groupBoxTraverseCities.Visible = true;
             }
         }
     }

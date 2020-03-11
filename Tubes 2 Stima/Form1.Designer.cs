@@ -30,7 +30,7 @@
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxInputFile = new System.Windows.Forms.GroupBox();
-            this.buttonExecution = new System.Windows.Forms.Button();
+            this.buttonCreateGraph = new System.Windows.Forms.Button();
             this.buttonBrowseFilePopulation = new System.Windows.Forms.Button();
             this.buttonBrowseFileConnection = new System.Windows.Forms.Button();
             this.textBoxCityPopulationFile = new System.Windows.Forms.TextBox();
@@ -39,7 +39,13 @@
             this.labelCityConnection = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.numericUpDownTimeTotal = new System.Windows.Forms.NumericUpDown();
+            this.labelTimeTotal = new System.Windows.Forms.Label();
+            this.buttonStart = new System.Windows.Forms.Button();
+            this.groupBoxTraverseCities = new System.Windows.Forms.GroupBox();
             this.groupBoxInputFile.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeTotal)).BeginInit();
+            this.groupBoxTraverseCities.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -48,7 +54,7 @@
             // 
             // groupBoxInputFile
             // 
-            this.groupBoxInputFile.Controls.Add(this.buttonExecution);
+            this.groupBoxInputFile.Controls.Add(this.buttonCreateGraph);
             this.groupBoxInputFile.Controls.Add(this.buttonBrowseFilePopulation);
             this.groupBoxInputFile.Controls.Add(this.buttonBrowseFileConnection);
             this.groupBoxInputFile.Controls.Add(this.textBoxCityPopulationFile);
@@ -63,16 +69,16 @@
             this.groupBoxInputFile.TabStop = false;
             this.groupBoxInputFile.Text = "Input File";
             // 
-            // buttonExecution
+            // buttonCreateGraph
             // 
-            this.buttonExecution.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.buttonExecution.Location = new System.Drawing.Point(10, 221);
-            this.buttonExecution.Name = "buttonExecution";
-            this.buttonExecution.Size = new System.Drawing.Size(68, 27);
-            this.buttonExecution.TabIndex = 7;
-            this.buttonExecution.Text = "Execute";
-            this.buttonExecution.UseVisualStyleBackColor = true;
-            this.buttonExecution.Click += new System.EventHandler(this.buttonExecution_Click);
+            this.buttonCreateGraph.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.buttonCreateGraph.Location = new System.Drawing.Point(10, 216);
+            this.buttonCreateGraph.Name = "buttonCreateGraph";
+            this.buttonCreateGraph.Size = new System.Drawing.Size(101, 32);
+            this.buttonCreateGraph.TabIndex = 7;
+            this.buttonCreateGraph.Text = "Create Graph";
+            this.buttonCreateGraph.UseVisualStyleBackColor = true;
+            this.buttonCreateGraph.Click += new System.EventHandler(this.buttonExecution_Click);
             // 
             // buttonBrowseFilePopulation
             // 
@@ -148,17 +154,60 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(454, 69);
+            this.textBox1.Location = new System.Drawing.Point(459, 30);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(325, 282);
+            this.textBox1.Size = new System.Drawing.Size(428, 399);
             this.textBox1.TabIndex = 2;
+            // 
+            // numericUpDownTimeTotal
+            // 
+            this.numericUpDownTimeTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.numericUpDownTimeTotal.Location = new System.Drawing.Point(141, 33);
+            this.numericUpDownTimeTotal.Name = "numericUpDownTimeTotal";
+            this.numericUpDownTimeTotal.Size = new System.Drawing.Size(59, 21);
+            this.numericUpDownTimeTotal.TabIndex = 3;
+            // 
+            // labelTimeTotal
+            // 
+            this.labelTimeTotal.AutoSize = true;
+            this.labelTimeTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.labelTimeTotal.Location = new System.Drawing.Point(6, 32);
+            this.labelTimeTotal.Name = "labelTimeTotal";
+            this.labelTimeTotal.Size = new System.Drawing.Size(96, 22);
+            this.labelTimeTotal.TabIndex = 4;
+            this.labelTimeTotal.Text = "Time Total";
+            // 
+            // buttonStart
+            // 
+            this.buttonStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonStart.Location = new System.Drawing.Point(10, 71);
+            this.buttonStart.Name = "buttonStart";
+            this.buttonStart.Size = new System.Drawing.Size(75, 23);
+            this.buttonStart.TabIndex = 5;
+            this.buttonStart.Text = "START";
+            this.buttonStart.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxTraverseCities
+            // 
+            this.groupBoxTraverseCities.Controls.Add(this.numericUpDownTimeTotal);
+            this.groupBoxTraverseCities.Controls.Add(this.labelTimeTotal);
+            this.groupBoxTraverseCities.Controls.Add(this.buttonStart);
+            this.groupBoxTraverseCities.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.groupBoxTraverseCities.Location = new System.Drawing.Point(22, 371);
+            this.groupBoxTraverseCities.Name = "groupBoxTraverseCities";
+            this.groupBoxTraverseCities.Size = new System.Drawing.Size(206, 114);
+            this.groupBoxTraverseCities.TabIndex = 6;
+            this.groupBoxTraverseCities.TabStop = false;
+            this.groupBoxTraverseCities.Text = "Traverse Cities";
+            this.groupBoxTraverseCities.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(851, 475);
+            this.ClientSize = new System.Drawing.Size(920, 541);
+            this.Controls.Add(this.groupBoxTraverseCities);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.groupBoxInputFile);
@@ -166,6 +215,9 @@
             this.Text = "Anti Corona";
             this.groupBoxInputFile.ResumeLayout(false);
             this.groupBoxInputFile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeTotal)).EndInit();
+            this.groupBoxTraverseCities.ResumeLayout(false);
+            this.groupBoxTraverseCities.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,8 +234,12 @@
         private System.Windows.Forms.Button buttonBrowseFileConnection;
         private System.Windows.Forms.TextBox textBoxCityPopulationFile;
         private System.Windows.Forms.Label labelCityPopulation;
-        private System.Windows.Forms.Button buttonExecution;
+        private System.Windows.Forms.Button buttonCreateGraph;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDownTimeTotal;
+        private System.Windows.Forms.Label labelTimeTotal;
+        private System.Windows.Forms.Button buttonStart;
+        private System.Windows.Forms.GroupBox groupBoxTraverseCities;
     }
 }
 
