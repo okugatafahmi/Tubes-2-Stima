@@ -54,7 +54,7 @@ namespace Tubes_2_Stima
         /// <returns></returns>
         public double VirusSpread(string cityTo, int time)
         {
-            double Tr;
+            double Tr = 0;
             foreach(var element in Adj)
             {
                 if(element.Item1 == cityTo)
@@ -74,7 +74,7 @@ namespace Tubes_2_Stima
         /// <returns></returns>
         public double TimeCityToGetInfected(string cityTo)
         {
-            double Tr;
+            double Tr = 0;
             foreach(var element in Adj)
             {
                 if(element.Item1 == cityTo)
