@@ -42,27 +42,28 @@ namespace Tubes_2_Stima
             if (textBoxCityConnectionFile.Text != "" && textBoxCityPopulationFile.Text != "")
             {
                 Program.graph.ReadFromFile(textBoxCityConnectionFile.Text, textBoxCityPopulationFile.Text);
-                System.Windows.Forms.Form form = new System.Windows.Forms.Form();
-                Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
-                Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-                foreach (KeyValuePair<string, City> keyValue in Program.graph.CityDict)
-                {
-                    foreach(Tuple<string, double> tuple in keyValue.Value.Adj)
-                    {
-                        graph.AddEdge(keyValue.Key, tuple.Item1);
-                    }
-                }
-                viewer.Graph = graph;
-                form.SuspendLayout();
-                viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-                form.Controls.Add(viewer);
-                form.ResumeLayout();
-                //show the form 
-                form.ShowDialog();
-                this.groupBoxTraverseCities.Visible = true;
+                makeGraphVisualisation();
+                groupBoxTraverseCities.Visible = true;
             }
         }
 
+        private void makeGraphVisualisation()
+        {
+            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+            foreach (KeyValuePair<string, City> keyValue in Program.graph.CityDict)
+            {
+                foreach (Tuple<string, double> tuple in keyValue.Value.Adj)
+                {
+                    graph.AddEdge(keyValue.Key, tuple.Item1);
+                }
+            }
+            gViewer.Graph = graph;
+        }
+        
+        private void updateGraphVisualisation(string from, string to)
+        {
+            //gViewer.Graph.E
+        }
         private void buttonStart_Click(object sender, EventArgs e)
         {
             Program.listInfected = Program.graph.BFS((int)numericUpDownTimeTotal.Value);

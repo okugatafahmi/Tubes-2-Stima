@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation planeTransformation1 = new Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxInputFile = new System.Windows.Forms.GroupBox();
             this.buttonCreateGraph = new System.Windows.Forms.Button();
@@ -38,11 +39,11 @@
             this.textBoxCityConnectionFile = new System.Windows.Forms.TextBox();
             this.labelCityConnection = new System.Windows.Forms.Label();
             this.labelTitle = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.numericUpDownTimeTotal = new System.Windows.Forms.NumericUpDown();
             this.labelTimeTotal = new System.Windows.Forms.Label();
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBoxTraverseCities = new System.Windows.Forms.GroupBox();
+            this.gViewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             this.groupBoxInputFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeTotal)).BeginInit();
             this.groupBoxTraverseCities.SuspendLayout();
@@ -152,14 +153,6 @@
             this.labelTitle.TabIndex = 1;
             this.labelTitle.Text = "Corona BFS";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(459, 30);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(428, 399);
-            this.textBox1.TabIndex = 2;
-            // 
             // numericUpDownTimeTotal
             // 
             this.numericUpDownTimeTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
@@ -203,13 +196,52 @@
             this.groupBoxTraverseCities.Text = "Traverse Cities";
             this.groupBoxTraverseCities.Visible = false;
             // 
+            // gViewer
+            // 
+            this.gViewer.ArrowheadLength = 10D;
+            this.gViewer.AsyncLayout = false;
+            this.gViewer.AutoScroll = true;
+            this.gViewer.BackwardEnabled = false;
+            this.gViewer.BuildHitTree = true;
+            this.gViewer.CurrentLayoutMethod = Microsoft.Msagl.GraphViewerGdi.LayoutMethod.UseSettingsOfTheGraph;
+            this.gViewer.EdgeInsertButtonVisible = true;
+            this.gViewer.FileName = "";
+            this.gViewer.ForwardEnabled = false;
+            this.gViewer.Graph = null;
+            this.gViewer.InsertingEdge = false;
+            this.gViewer.LayoutAlgorithmSettingsButtonVisible = true;
+            this.gViewer.LayoutEditingEnabled = true;
+            this.gViewer.Location = new System.Drawing.Point(432, 18);
+            this.gViewer.LooseOffsetForRouting = 0.25D;
+            this.gViewer.MouseHitDistance = 0.05D;
+            this.gViewer.Name = "gViewer";
+            this.gViewer.NavigationVisible = true;
+            this.gViewer.NeedToCalculateLayout = true;
+            this.gViewer.OffsetForRelaxingInRouting = 0.6D;
+            this.gViewer.PaddingForEdgeRouting = 8D;
+            this.gViewer.PanButtonPressed = false;
+            this.gViewer.SaveAsImageEnabled = true;
+            this.gViewer.SaveAsMsaglEnabled = true;
+            this.gViewer.SaveButtonVisible = true;
+            this.gViewer.SaveGraphButtonVisible = true;
+            this.gViewer.SaveInVectorFormatEnabled = true;
+            this.gViewer.Size = new System.Drawing.Size(476, 506);
+            this.gViewer.TabIndex = 7;
+            this.gViewer.TightOffsetForRouting = 0.125D;
+            this.gViewer.ToolBarIsVisible = true;
+            this.gViewer.Transform = planeTransformation1;
+            this.gViewer.UndoRedoButtonsVisible = true;
+            this.gViewer.WindowZoomButtonPressed = false;
+            this.gViewer.ZoomF = 1D;
+            this.gViewer.ZoomWindowThreshold = 0.05D;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(920, 541);
+            this.Controls.Add(this.gViewer);
             this.Controls.Add(this.groupBoxTraverseCities);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.groupBoxInputFile);
             this.Name = "Form1";
@@ -236,11 +268,11 @@
         private System.Windows.Forms.TextBox textBoxCityPopulationFile;
         private System.Windows.Forms.Label labelCityPopulation;
         private System.Windows.Forms.Button buttonCreateGraph;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.NumericUpDown numericUpDownTimeTotal;
         private System.Windows.Forms.Label labelTimeTotal;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.GroupBox groupBoxTraverseCities;
+        private Microsoft.Msagl.GraphViewerGdi.GViewer gViewer;
     }
 }
 
