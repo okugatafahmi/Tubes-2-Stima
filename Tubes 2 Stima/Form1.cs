@@ -129,5 +129,36 @@ namespace Tubes_2_Stima
                 numericUpDownJumpTo.Maximum = numericUpDownTimeTotal.Value;
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            groupBoxInputFile.BackColor = System.Drawing.Color.FromArgb(100, 0, 0, 0);
+            groupBoxTraverseCities.BackColor = System.Drawing.Color.FromArgb(100, 0, 0, 0);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else 
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState != FormWindowState.Minimized)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
+        }
     }
 }
