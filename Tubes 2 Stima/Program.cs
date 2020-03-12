@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,5 +20,6 @@ namespace Tubes_2_Stima
         }
 
         public static CityGraph graph = new CityGraph();
+        public static List<Tuple<Tuple<string, string>, int>> listInfected;
     }
 }

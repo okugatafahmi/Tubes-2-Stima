@@ -65,8 +65,11 @@ namespace Tubes_2_Stima
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            //Console.WriteLine((int)numericUpDownTimeTotal.Value);
-            Program.graph.BFS((int)numericUpDownTimeTotal.Value);
+            Program.listInfected = Program.graph.BFS((int)numericUpDownTimeTotal.Value);
+            foreach(var item in Program.listInfected)
+            {
+                Console.WriteLine(item.Item1.Item1 + " " + item.Item1.Item2 + " " + item.Item2);
+            }
         }
     }
 }
