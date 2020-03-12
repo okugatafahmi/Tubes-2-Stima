@@ -37,13 +37,36 @@ namespace Tubes_2_Stima
             }
         }
 
-        private void buttonExecution_Click(object sender, EventArgs e)
+        private void buttonCreateGraph_Click(object sender, EventArgs e)
         {
             if (textBoxCityConnectionFile.Text != "" && textBoxCityPopulationFile.Text != "")
             {
                 Program.graph.ReadFromFile(textBoxCityConnectionFile.Text, textBoxCityPopulationFile.Text);
+                System.Windows.Forms.Form form = new System.Windows.Forms.Form();
+                Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+                Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+                foreach (KeyValuePair<string, City> keyValue in Program.graph.CityDict)
+                {
+                    foreach(Tuple<string, double> tuple in keyValue.Value.Adj)
+                    {
+                        graph.AddEdge(keyValue.Key, tuple.Item1);
+                    }
+                }
+                viewer.Graph = graph;
+                form.SuspendLayout();
+                viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+                form.Controls.Add(viewer);
+                form.ResumeLayout();
+                //show the form 
+                form.ShowDialog();
                 this.groupBoxTraverseCities.Visible = true;
             }
+        }
+
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            //Console.WriteLine((int)numericUpDownTimeTotal.Value);
+            Program.graph.BFS((int)numericUpDownTimeTotal.Value);
         }
     }
 }

@@ -78,7 +78,7 @@
             this.buttonCreateGraph.TabIndex = 7;
             this.buttonCreateGraph.Text = "Create Graph";
             this.buttonCreateGraph.UseVisualStyleBackColor = true;
-            this.buttonCreateGraph.Click += new System.EventHandler(this.buttonExecution_Click);
+            this.buttonCreateGraph.Click += new System.EventHandler(this.buttonCreateGraph_Click);
             // 
             // buttonBrowseFilePopulation
             // 
@@ -187,6 +187,7 @@
             this.buttonStart.TabIndex = 5;
             this.buttonStart.Text = "START";
             this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // groupBoxTraverseCities
             // 

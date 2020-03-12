@@ -60,6 +60,7 @@ namespace Tubes_2_Stima
                 if(element.Item1 == cityTo)
                 {
                     Tr = element.Item2;
+                    break;
                 }
             }
 
@@ -80,11 +81,12 @@ namespace Tubes_2_Stima
                 if(element.Item1 == cityTo)
                 {
                     Tr = element.Item2;
+                    break;
                 }
             }
 
-            double count = 1/(PopulationGetInfected(1)*Tr);
-            double time = Math.Round(count, 0, MidpointRounding.AwayFromZero);
+            double val = (Population*Tr-1)/(Population-1);
+            double time = Math.Log(val) / -0.25;
             return time;
         }
     }

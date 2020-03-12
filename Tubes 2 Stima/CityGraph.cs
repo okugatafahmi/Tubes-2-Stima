@@ -6,9 +6,11 @@ namespace Tubes_2_Stima
 {
     class CityGraph
     {
-        private Dictionary<string, City> cityDict = new Dictionary<string, City>();
         private string startNode;
-        private int nNode, nEdge;
+
+        public int NNode { get; private set; }
+        public Dictionary<string, City> CityDict { get; } = new Dictionary<string, City>();
+        public int NEdge { get; private set; }
 
         /// <summary>
         /// Membaca input dari file kemudian di assign ke field yang bersesuaian
@@ -26,12 +28,12 @@ namespace Tubes_2_Stima
                 string[] input = inputLine.Split(' ');
                 if (count == 0)
                 {
-                    nNode = Int32.Parse(input[0]);
+                    NNode = Int32.Parse(input[0]);
                     startNode = input[1];
                 }
                 else
                 {
-                    cityDict[input[0]] = new City(input[0], Int32.Parse(input[1]));
+                    CityDict[input[0]] = new City(input[0], Int32.Parse(input[1]));
                 }
                 ++count;
             }
@@ -41,15 +43,15 @@ namespace Tubes_2_Stima
                 string[] input = inputLine.Split(' ');
                 if (count == 0)
                 {
-                    nEdge = Int32.Parse(input[0]);
+                    NEdge = Int32.Parse(input[0]);
                 }
                 else
                 {
-                    cityDict[input[0]].AddAdj(input[1], Double.Parse(input[2]));
+                    CityDict[input[0]].AddAdj(input[1], Double.Parse(input[2]));
                 }
                 ++count;
             }
-            foreach (KeyValuePair<string, City> kp in cityDict)
+            foreach (KeyValuePair<string, City> kp in CityDict)
             {
                 Console.WriteLine(kp.Key + ':');
                 foreach (Tuple<string, double> k in kp.Value.Adj)
@@ -71,14 +73,14 @@ namespace Tubes_2_Stima
             Dictionary<string, int> timeCityGetInfected = new Dictionary<string, int>();
             List<Tuple<string, string>> res = new List<Tuple<string, string>>();
             // Inisiasi waktu kota terinfeksi dengan tak hingga
-            foreach (string cityName in cityDict.Keys)
+            foreach (string cityName in CityDict.Keys)
             {
                 timeCityGetInfected[cityName] = Int32.MaxValue;
             }
             timeCityGetInfected[startNode] = 0;
 
             // Setiap kota yang bertetanggaan dengan kota pertama dimasukkan queue
-            foreach (Tuple<string, double> adj in cityDict[startNode].Adj)
+            foreach (Tuple<string, double> adj in CityDict[startNode].Adj)
             {
                 nodeAlive.Enqueue(new Tuple<string, string>(startNode, adj.Item1));
             }
@@ -88,16 +90,20 @@ namespace Tubes_2_Stima
             {
                 string from = nodeAlive.Peek().Item1, to = nodeAlive.Peek().Item2;
                 int timeFrom = timeTotal - timeCityGetInfected[from];
-                City cityFrom = cityDict[from];
+                City cityFrom = CityDict[from];
+                //Console.WriteLine("Mantap");
+                //Console.WriteLine(from + ' ' + to);
+                //Console.WriteLine(cityFrom.VirusSpread(to, timeFrom));
                 if (cityFrom.VirusSpread(to, timeFrom) > 1.0)
                 {
                     res.Add(new Tuple<string, string>(from, to));
-                    int timeSpread = (int) Math.Floor(cityFrom.TimeCityToGetInfected(to));
+                    int timeSpread = (int) Math.Ceiling(cityFrom.TimeCityToGetInfected(to));
+                    //Console.WriteLine(from + ' ' + to + ' ' + timeSpread);
                     int timeCityToInfected = timeCityGetInfected[to];
                     timeCityGetInfected[to] = timeFrom + timeSpread;
                     if (timeFrom + timeSpread < timeCityToInfected)
                     {
-                        foreach (Tuple<string, double> adj in cityDict[to].Adj)
+                        foreach (Tuple<string, double> adj in CityDict[to].Adj)
                         {
                             nodeAlive.Enqueue(new Tuple<string, string>(startNode, adj.Item1));
                         }
