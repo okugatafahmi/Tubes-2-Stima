@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation planeTransformation1 = new Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation();
+            Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation planeTransformation3 = new Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxInputFile = new System.Windows.Forms.GroupBox();
             this.buttonCreateGraph = new System.Windows.Forms.Button();
@@ -44,9 +44,12 @@
             this.buttonStart = new System.Windows.Forms.Button();
             this.groupBoxTraverseCities = new System.Windows.Forms.GroupBox();
             this.gViewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            this.numericUpDownJumpTo = new System.Windows.Forms.NumericUpDown();
+            this.labelJumpTo = new System.Windows.Forms.Label();
             this.groupBoxInputFile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeTotal)).BeginInit();
             this.groupBoxTraverseCities.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownJumpTo)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -201,6 +204,7 @@
             this.gViewer.ArrowheadLength = 10D;
             this.gViewer.AsyncLayout = false;
             this.gViewer.AutoScroll = true;
+            this.gViewer.BackColor = System.Drawing.SystemColors.Window;
             this.gViewer.BackwardEnabled = false;
             this.gViewer.BuildHitTree = true;
             this.gViewer.CurrentLayoutMethod = Microsoft.Msagl.GraphViewerGdi.LayoutMethod.UseSettingsOfTheGraph;
@@ -225,21 +229,46 @@
             this.gViewer.SaveButtonVisible = true;
             this.gViewer.SaveGraphButtonVisible = true;
             this.gViewer.SaveInVectorFormatEnabled = true;
-            this.gViewer.Size = new System.Drawing.Size(476, 506);
+            this.gViewer.Size = new System.Drawing.Size(476, 467);
             this.gViewer.TabIndex = 7;
             this.gViewer.TightOffsetForRouting = 0.125D;
             this.gViewer.ToolBarIsVisible = true;
-            this.gViewer.Transform = planeTransformation1;
+            this.gViewer.Transform = planeTransformation3;
             this.gViewer.UndoRedoButtonsVisible = true;
             this.gViewer.WindowZoomButtonPressed = false;
             this.gViewer.ZoomF = 1D;
             this.gViewer.ZoomWindowThreshold = 0.05D;
+            // 
+            // numericUpDownJumpTo
+            // 
+            this.numericUpDownJumpTo.Location = new System.Drawing.Point(520, 491);
+            this.numericUpDownJumpTo.Maximum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numericUpDownJumpTo.Name = "numericUpDownJumpTo";
+            this.numericUpDownJumpTo.Size = new System.Drawing.Size(51, 20);
+            this.numericUpDownJumpTo.TabIndex = 8;
+            this.numericUpDownJumpTo.TextChanged += new System.EventHandler(updateGraphViewer);
+            // 
+            // labelJumpTo
+            // 
+            this.labelJumpTo.AutoSize = true;
+            this.labelJumpTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.labelJumpTo.Location = new System.Drawing.Point(445, 491);
+            this.labelJumpTo.Name = "labelJumpTo";
+            this.labelJumpTo.Size = new System.Drawing.Size(58, 17);
+            this.labelJumpTo.TabIndex = 9;
+            this.labelJumpTo.Text = "Jump to";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(920, 541);
+            this.Controls.Add(this.labelJumpTo);
+            this.Controls.Add(this.numericUpDownJumpTo);
             this.Controls.Add(this.gViewer);
             this.Controls.Add(this.groupBoxTraverseCities);
             this.Controls.Add(this.labelTitle);
@@ -251,6 +280,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTimeTotal)).EndInit();
             this.groupBoxTraverseCities.ResumeLayout(false);
             this.groupBoxTraverseCities.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownJumpTo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,6 +303,8 @@
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.GroupBox groupBoxTraverseCities;
         private Microsoft.Msagl.GraphViewerGdi.GViewer gViewer;
+        private System.Windows.Forms.NumericUpDown numericUpDownJumpTo;
+        private System.Windows.Forms.Label labelJumpTo;
     }
 }
 

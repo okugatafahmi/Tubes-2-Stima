@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Msagl.Drawing;
 
 namespace Tubes_2_Stima
 {
@@ -42,14 +43,15 @@ namespace Tubes_2_Stima
             if (textBoxCityConnectionFile.Text != "" && textBoxCityPopulationFile.Text != "")
             {
                 Program.graph.ReadFromFile(textBoxCityConnectionFile.Text, textBoxCityPopulationFile.Text);
-                makeGraphVisualisation();
+                Program.graphPure = makeGraphVisualisation();
+                gViewer.Graph = Program.graphPure;
                 groupBoxTraverseCities.Visible = true;
             }
         }
 
-        private void makeGraphVisualisation()
+        private Graph makeGraphVisualisation()
         {
-            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+            Graph graph = new Graph("graph");
             foreach (KeyValuePair<string, City> keyValue in Program.graph.CityDict)
             {
                 foreach (Tuple<string, double> tuple in keyValue.Value.Adj)
@@ -57,19 +59,77 @@ namespace Tubes_2_Stima
                     graph.AddEdge(keyValue.Key, tuple.Item1);
                 }
             }
-            gViewer.Graph = graph;
+            return graph;
         }
         
-        private void updateGraphVisualisation(string from, string to)
+        private Graph updateGraphNodeVisualisation(Graph graphBefore, string node)
         {
-            //gViewer.Graph.E
+            Graph graph = graphBefore;
+            graph.FindNode(node).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+            return graph;
+        }
+        private Graph updateGraphEdgeVisualisation(Graph graphBefore, string from, string to)
+        {
+            Graph graph = graphBefore;
+            foreach(var edge in graph.Edges)
+            {
+                if (edge.Source == from && edge.Target == to)
+                {
+                    edge.Attr.Color = Microsoft.Msagl.Drawing.Color.DarkRed;
+                    graph.FindNode(to).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    break;
+                }
+            }
+            return graph;
+        }
+
+        private void updateGraphViewer(Object sender, EventArgs e)
+        {
+            gViewer.Graph = Program.graphMsaglList[(int)numericUpDownJumpTo.Value];
         }
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            Program.listInfected = Program.graph.BFS((int)numericUpDownTimeTotal.Value);
-            foreach(var item in Program.listInfected)
+            List<Tuple<Tuple<string, string>, int>> listInfected = Program.graph.BFS((int)numericUpDownTimeTotal.Value);
+            listInfected.Sort((item1, item2) => item1.Item2.CompareTo(item2.Item2));
+
+            if (Program.graphMsaglList.Count != 0) Program.graphMsaglList.Clear();
+
+            Graph graph = updateGraphNodeVisualisation(Program.graphPure, Program.graph.StartNode);
+            for (int i=0, idx=0; i<=(int)numericUpDownTimeTotal.Value; ++i)
             {
-                Console.WriteLine(item.Item1.Item1 + " " + item.Item1.Item2 + " " + item.Item2);
+                if (idx < listInfected.Count)
+                {
+                    while(listInfected[idx].Item2==i && idx < listInfected.Count-1)
+                    {
+                        Console.WriteLine(listInfected[idx].Item1.Item1 + " " + listInfected[idx].Item1.Item2 + " " + listInfected[idx].Item2);
+                        graph = updateGraphEdgeVisualisation(graph, listInfected[idx].Item1.Item1, listInfected[idx].Item1.Item2);
+                        ++idx;
+                    }
+                    if (listInfected[idx].Item2 == i)
+                    {
+                        Console.WriteLine(listInfected[idx].Item1.Item1 + " " + listInfected[idx].Item1.Item2 + " " + listInfected[idx].Item2);
+                        graph = updateGraphEdgeVisualisation(graph, listInfected[idx].Item1.Item1, listInfected[idx].Item1.Item2);
+                        ++idx;
+                    }
+                }
+                
+                Program.graphMsaglList.Add(graph);
+            }
+            Console.WriteLine("\nEdge: ");
+            foreach (var edge in gViewer.Graph.Edges)
+            {
+                Console.WriteLine(edge.Source + " " + edge.Target);
+            }
+            Console.WriteLine();
+            if (numericUpDownJumpTo.Maximum < numericUpDownTimeTotal.Value)
+            {
+                numericUpDownJumpTo.Maximum = numericUpDownTimeTotal.Value;
+                numericUpDownJumpTo.Value = numericUpDownTimeTotal.Value;
+            }
+            else
+            {
+                numericUpDownJumpTo.Value = numericUpDownTimeTotal.Value;
+                numericUpDownJumpTo.Maximum = numericUpDownTimeTotal.Value;
             }
         }
     }

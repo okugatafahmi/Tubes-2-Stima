@@ -20,6 +20,8 @@ namespace Tubes_2_Stima
         }
 
         public static CityGraph graph = new CityGraph();
-        public static List<Tuple<Tuple<string, string>, int>> listInfected;
+        public static Microsoft.Msagl.Drawing.Graph graphPure = new Microsoft.Msagl.Drawing.Graph();
+        public static List<Microsoft.Msagl.Drawing.Graph> graphMsaglList = new List<Microsoft.Msagl.Drawing.Graph>();
+        //public static List<Tuple<Tuple<string, string>, int>> listInfected;
     }
 }

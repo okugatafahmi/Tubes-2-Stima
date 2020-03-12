@@ -6,11 +6,10 @@ namespace Tubes_2_Stima
 {
     class CityGraph
     {
-        private string startNode;
-
         public int NNode { get; private set; }
-        public Dictionary<string, City> CityDict { get; } = new Dictionary<string, City>();
         public int NEdge { get; private set; }
+        public string StartNode { get; private set; }
+        public Dictionary<string, City> CityDict { get; } = new Dictionary<string, City>();
 
         /// <summary>
         /// Membaca input dari file kemudian di assign ke field yang bersesuaian
@@ -29,7 +28,7 @@ namespace Tubes_2_Stima
                 if (count == 0)
                 {
                     NNode = Int32.Parse(input[0]);
-                    startNode = input[1];
+                    StartNode = input[1];
                 }
                 else
                 {
@@ -77,12 +76,12 @@ namespace Tubes_2_Stima
             {
                 timeCityGetInfected[cityName] = Int32.MaxValue;
             }
-            timeCityGetInfected[startNode] = 0;
+            timeCityGetInfected[StartNode] = 0;
 
             // Setiap kota yang bertetanggaan dengan kota pertama dimasukkan queue
-            foreach (Tuple<string, double> adj in CityDict[startNode].Adj)
+            foreach (Tuple<string, double> adj in CityDict[StartNode].Adj)
             {
-                nodeAlive.Enqueue(new Tuple<string, string>(startNode, adj.Item1));
+                nodeAlive.Enqueue(new Tuple<string, string>(StartNode, adj.Item1));
             }
 
             // mentraversal node sampai kosong
