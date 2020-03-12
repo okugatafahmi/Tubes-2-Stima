@@ -18,6 +18,7 @@ namespace Tubes_2_Stima
         /// <param name="populationFileName"></param>
         public void ReadFromFile(string connectionFileName, string populationFileName)
         {
+            if (CityDict.Count != 0) CityDict.Clear();
             string[] inputConnection = File.ReadAllLines(connectionFileName);
             string[] inputPopulation = File.ReadAllLines(populationFileName);
 

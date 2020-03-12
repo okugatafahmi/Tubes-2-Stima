@@ -134,6 +134,7 @@ namespace Tubes_2_Stima
                 
                 Program.graphMsaglList.Add(graph);
             }
+            decimal valBefore = numericUpDownJumpTo.Value;
             if (numericUpDownJumpTo.Maximum < numericUpDownTimeTotal.Value)
             {
                 numericUpDownJumpTo.Maximum = numericUpDownTimeTotal.Value;
@@ -143,6 +144,11 @@ namespace Tubes_2_Stima
             {
                 numericUpDownJumpTo.Value = numericUpDownTimeTotal.Value;
                 numericUpDownJumpTo.Maximum = numericUpDownTimeTotal.Value;
+            }
+
+            if (valBefore == numericUpDownJumpTo.Value)
+            {
+                gViewer.Graph = Program.graphMsaglList[(int)valBefore];
             }
         }
 
