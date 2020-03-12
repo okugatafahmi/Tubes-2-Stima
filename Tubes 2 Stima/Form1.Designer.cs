@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation planeTransformation3 = new Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation();
+            Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation planeTransformation1 = new Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxInputFile = new System.Windows.Forms.GroupBox();
             this.buttonCreateGraph = new System.Windows.Forms.Button();
@@ -233,8 +233,9 @@
             this.gViewer.TabIndex = 7;
             this.gViewer.TightOffsetForRouting = 0.125D;
             this.gViewer.ToolBarIsVisible = true;
-            this.gViewer.Transform = planeTransformation3;
+            this.gViewer.Transform = planeTransformation1;
             this.gViewer.UndoRedoButtonsVisible = true;
+            this.gViewer.Visible = false;
             this.gViewer.WindowZoomButtonPressed = false;
             this.gViewer.ZoomF = 1D;
             this.gViewer.ZoomWindowThreshold = 0.05D;
@@ -250,7 +251,8 @@
             this.numericUpDownJumpTo.Name = "numericUpDownJumpTo";
             this.numericUpDownJumpTo.Size = new System.Drawing.Size(51, 20);
             this.numericUpDownJumpTo.TabIndex = 8;
-            this.numericUpDownJumpTo.TextChanged += new System.EventHandler(updateGraphViewer);
+            this.numericUpDownJumpTo.Visible = false;
+            this.numericUpDownJumpTo.ValueChanged += new System.EventHandler(this.updateGraphViewer);
             // 
             // labelJumpTo
             // 
@@ -261,6 +263,7 @@
             this.labelJumpTo.Size = new System.Drawing.Size(58, 17);
             this.labelJumpTo.TabIndex = 9;
             this.labelJumpTo.Text = "Jump to";
+            this.labelJumpTo.Visible = false;
             // 
             // Form1
             // 

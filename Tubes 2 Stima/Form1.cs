@@ -46,6 +46,9 @@ namespace Tubes_2_Stima
                 Program.graphPure = makeGraphVisualisation();
                 gViewer.Graph = Program.graphPure;
                 groupBoxTraverseCities.Visible = true;
+                gViewer.Visible = true;
+                labelJumpTo.Visible = true;
+                numericUpDownJumpTo.Visible = true;
             }
         }
 
@@ -64,13 +67,13 @@ namespace Tubes_2_Stima
         
         private Graph updateGraphNodeVisualisation(Graph graphBefore, string node)
         {
-            Graph graph = graphBefore;
+            Graph graph = Program.copyGraphMsagl(graphBefore);
             graph.FindNode(node).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
             return graph;
         }
         private Graph updateGraphEdgeVisualisation(Graph graphBefore, string from, string to)
         {
-            Graph graph = graphBefore;
+            Graph graph = Program.copyGraphMsagl(graphBefore);
             foreach(var edge in graph.Edges)
             {
                 if (edge.Source == from && edge.Target == to)
@@ -115,12 +118,6 @@ namespace Tubes_2_Stima
                 
                 Program.graphMsaglList.Add(graph);
             }
-            Console.WriteLine("\nEdge: ");
-            foreach (var edge in gViewer.Graph.Edges)
-            {
-                Console.WriteLine(edge.Source + " " + edge.Target);
-            }
-            Console.WriteLine();
             if (numericUpDownJumpTo.Maximum < numericUpDownTimeTotal.Value)
             {
                 numericUpDownJumpTo.Maximum = numericUpDownTimeTotal.Value;
