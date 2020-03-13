@@ -59,6 +59,7 @@ namespace Tubes_2_Stima
                     Console.WriteLine(k.Item1 + ' ' + k.Item2);
                 }
             }
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -92,23 +93,45 @@ namespace Tubes_2_Stima
                 int timeRemain = timeTotal - timeCityGetInfected[from];
                 City cityFrom = CityDict[from];
 
+                Console.Write("Cek penyebaran {0:string} -> {1:string}\n" +
+                    "T({0:string}) = {2}\n" +
+                    "t({0:string}) = {3}-{2} = {4}\n" +
+                    "I({0:string}, {4}) = {5}\n" +
+                    "S({0:string}, {1:string}) = I({0:string}, {4}) * Tr({0:string}, {1:string}) = {5} * Trnya = {6}\n",
+                    from, to, timeCityGetInfected[from], timeTotal, timeRemain, cityFrom.PopulationGetInfected(timeRemain), 
+                    cityFrom.VirusSpread(to,timeRemain));
                 if (cityFrom.VirusSpread(to, timeRemain) > 1.0)
                 {
                     int timeSpread = (int) Math.Ceiling(cityFrom.TimeCityToGetInfected(to));
 
                     int timeCityToInfected = timeCityGetInfected[to];
                     int timeCityFromInfected = timeCityGetInfected[from];
-                    timeCityGetInfected[to] = timeCityFromInfected + timeSpread;
+                    Console.Write("Karena S({0:string}, {1:string}) > 1, virus " +
+                        "berhasil tersebar dari daerah {0:string} ke {1:string}.\n" +
+                        "Waktu penyebarannya virus dari daerah {0:string} ke {1:string} adalah {2} sehingga:\n" +
+                        "T({1:string}) = {2} + T({0:string}) = {2} + {3} = {4}\n", from, to, timeSpread, timeCityFromInfected, timeCityFromInfected + timeSpread);
                     if (timeCityFromInfected + timeSpread < timeCityToInfected)
                     {
+                        timeCityGetInfected[to] = timeCityFromInfected + timeSpread;
                         foreach (Tuple<string, double> adj in CityDict[to].Adj)
                         {
+                            Console.WriteLine(to + " -> " + adj.Item1);
                             nodeAlive.Enqueue(new Tuple<string, string>(to, adj.Item1));
                         }
                     }
+                    else
+                    {
+                        Console.Write("Karena T'({0:string}) > T({0:string}) kota yang bertetanggan dengan {0:string} tidak ditambah.\n");
+                    }
                     res.Add(new Tuple<Tuple<string, string>,int>(new Tuple<string,string>(from, to),timeCityFromInfected + timeSpread));
                 }
+                else
+                {
+                    Console.Write("Karena S({0:string}, {1:string}) < 1, virus " +
+                        "tidak berhasil tersebar dari daerah {0:string} ke {1:string}.\n", from, to);
+                }
                 nodeAlive.Dequeue();
+                Console.WriteLine();
             }
             return res;
         }

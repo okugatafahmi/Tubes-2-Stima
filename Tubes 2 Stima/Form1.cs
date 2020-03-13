@@ -71,6 +71,7 @@ namespace Tubes_2_Stima
         private Graph makeGraphVisualisation()
         {
             Graph graph = new Graph("graph");
+            graph.Attr.BackgroundColor = Microsoft.Msagl.Drawing.Color.AliceBlue;
             foreach (KeyValuePair<string, City> keyValue in Program.graph.CityDict)
             {
                 foreach (Tuple<string, double> tuple in keyValue.Value.Adj)
@@ -134,6 +135,7 @@ namespace Tubes_2_Stima
                 
                 Program.graphMsaglList.Add(graph);
             }
+            Console.WriteLine();
             decimal valBefore = numericUpDownJumpTo.Value;
             if (numericUpDownJumpTo.Maximum < numericUpDownTimeTotal.Value)
             {

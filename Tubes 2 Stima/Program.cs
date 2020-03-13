@@ -25,6 +25,7 @@ namespace Tubes_2_Stima
         public static Microsoft.Msagl.Drawing.Graph copyGraphMsagl(Microsoft.Msagl.Drawing.Graph graph)
         {
             Microsoft.Msagl.Drawing.Graph res = new Microsoft.Msagl.Drawing.Graph("graph");
+            res.Attr.BackgroundColor = graph.Attr.BackgroundColor;
             foreach (var edge in graph.Edges)
             {
                 res.AddEdge(edge.Source, edge.Target).Attr.Color = edge.Attr.Color;
