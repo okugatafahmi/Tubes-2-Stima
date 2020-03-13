@@ -1,6 +1,6 @@
 Cara membuild project:
 1. Buka file "Tubes 2 Stima.sln" dengan visual studio.
-2. Lalu jalankan dengan menekan tombol Ctrll + F5
+2. Lalu jalankan dengan menekan tombol Ctrl + F5
 3. Kemudian gunakan programnya
 
 Cara menggunakan program:
@@ -13,4 +13,4 @@ Cara menggunakan program:
 3. Tekan tombol Create Graph
 4. Isi waktu total yang ingin dianalisis
 5. Tekan tombol START
-6. Jika ingin melihat kondisi d suatu waktu tertentu, gunakan komponen numericUpDown berlabelkan "Jump to"
+6. Jika ingin melihat kondisi di suatu waktu tertentu, gunakan komponen numericUpDown berlabelkan "Jump to"
