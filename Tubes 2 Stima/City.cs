@@ -12,13 +12,15 @@ namespace Tubes_2_Stima
 
     class City
     {
+        // Konstruktor kelas City
         public City(string _name, int _population)
         {
             Name = _name;
             Population = _population;
         }
-        public string Name { get; set; }
-        public int Population { get; set; }
+        public string Name { get; set; } // Nama sebuah kota
+        public int Population { get; set; } // Populasi sebuah kota
+        // List tuple dari kota tetangga dan peluang orang melakakukan perpindahan
         public List<Tuple<string, double>> Adj { get; } = new List<Tuple<string, double>>();
 
         /// <summary>

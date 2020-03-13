@@ -6,9 +6,10 @@ namespace Tubes_2_Stima
 {
     class CityGraph
     {
-        public int NNode { get; private set; }
-        public int NEdge { get; private set; }
-        public string StartNode { get; private set; }
+        public int NNode { get; private set; } // Banyak simpul
+        public int NEdge { get; private set; } // Banyak jalur
+        public string StartNode { get; private set; } // Nama simpul yang pertama terjangkit virus
+        // Dictionary yang menyimpan kota-kota yang ada
         public Dictionary<string, City> CityDict { get; } = new Dictionary<string, City>();
 
         /// <summary>
@@ -66,8 +67,9 @@ namespace Tubes_2_Stima
         /// Melakukan traversal graph dengan algoritma BFS yang sesuai dengan spek tubes.
         /// Mengembalikan list tuple kota asal dan tujuan yang terinfeksi
         /// </summary>
-        /// <param name="timeTotal"></param>
-        /// <returns></returns>
+        /// <param name="timeTotal">Waktu total yang dianalisis</param>
+        /// <returns>List dari pasangan dari pasangan kota asal dan kota tujuan yang terkena virus serta waktu
+        /// kapan virus menyebar antar kota tersebut</returns>
         public List<Tuple<Tuple<string, string>, int>> BFS(int timeTotal)
         {
             Queue<Tuple<string, string>> nodeAlive = new Queue<Tuple<string, string>>();

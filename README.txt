@@ -1,7 +1,8 @@
 Cara membuild project:
-1. Buka file "Tubes 2 Stima.sln" dengan visual studio.
-2. Lalu jalankan dengan menekan tombol Ctrl + F5
-3. Kemudian gunakan programnya
+1. Buka file "Tubes 2 Stima.sln" dengan Visual Studio.
+2. Install terlebih dahulu package-package yang diperlukan jika belum ada. Package yang diperlukan adalah Microsoft.Msagl.1.1.3, Microsoft.Msagl.Drawing.1.1.3, dan Microsoft.Msagl.GraphViewerGDI.1.1.3. Package-package tersebut dapat dinstall melalui NuGet package di Visual Studio.
+3. Lalu jalankan dengan menekan tombol Ctrl + F5
+4. Kemudian gunakan programnya
 
 Cara menggunakan program:
 1. Masukkan file input berupa info keterhubungan kota dan peluang orangnya berpindah. Format isi filenya seperti ini:
