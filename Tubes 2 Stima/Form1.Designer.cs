@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation planeTransformation2 = new Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation();
+            Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation planeTransformation1 = new Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBoxInputFile = new System.Windows.Forms.GroupBox();
@@ -263,7 +263,7 @@
             this.gViewer.TabIndex = 7;
             this.gViewer.TightOffsetForRouting = 0.125D;
             this.gViewer.ToolBarIsVisible = true;
-            this.gViewer.Transform = planeTransformation2;
+            this.gViewer.Transform = planeTransformation1;
             this.gViewer.UndoRedoButtonsVisible = true;
             this.gViewer.Visible = false;
             this.gViewer.WindowZoomButtonPressed = false;
@@ -349,6 +349,7 @@
             this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.groupBoxInputFile);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Anti Corona";
             this.Load += new System.EventHandler(this.Form1_Load);
